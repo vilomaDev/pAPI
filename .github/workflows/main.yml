@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [main]
 
-defaults:
-    run:
-      working-directory: ./vendor/papi
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
