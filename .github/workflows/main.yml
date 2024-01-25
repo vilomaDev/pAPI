@@ -9,11 +9,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    services:
-      strapi:
-        image: strapi
-        ports:
-          - 1337:1337
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,6 +18,8 @@ jobs:
           node-version: '18'
       - name: Install dependencies
         run: npm install --legacy-peer-deps
+      - name: install yarn
+        run: npm install yarn
       - name: Build
         run: npm run build
       - name: Test
