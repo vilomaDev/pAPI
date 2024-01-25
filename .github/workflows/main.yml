@@ -9,6 +9,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    services:
+      strapi:
+        image: strapi
+        ports:
+          - 1337:1337
     steps:
       - uses: actions/checkout@v4
         with:
