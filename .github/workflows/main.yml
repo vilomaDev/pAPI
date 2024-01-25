@@ -20,6 +20,8 @@ jobs:
         run: npm install --legacy-peer-deps
       - name: install yarn
         run: npm install yarn
+      - name: yarn dep
+        run: yarn install
       - name: Build
         run: npm run build
       - name: Test
