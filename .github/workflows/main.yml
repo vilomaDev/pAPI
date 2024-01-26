@@ -16,11 +16,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - uses: DerYeger/yarn-setup-action@master
-        with:
-          node-version: 18
-      - name: install yarn
-        run: npm install yarn
+      - name: Install dependeces
+        run: npm install --legacy-peer-deps
       - name: Build
         run: npm run build
       - name: Test
