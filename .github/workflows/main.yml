@@ -15,8 +15,9 @@ jobs:
           fetch-depth: 0
       - name: Install dependeces
         run: npm install --legacy-peer-deps
-      - name: Install dep
-        run: yarn install
+      - run: rm yarn.lock
+      - run: rm -rf node_modules
+      - run: yarn install
       - name: Build
         run: npm run build
       - name: Test
