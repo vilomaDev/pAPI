@@ -16,7 +16,7 @@ jobs:
       - name: Install dependeces
         run: npm install --legacy-peer-deps
       - name: Install dep
-        run: yarn upgrade
+        run: yarn install
       - name: Build
         run: npm run build
       - name: Test
