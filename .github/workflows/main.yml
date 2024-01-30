@@ -19,8 +19,7 @@ jobs:
       - name: Install dependeces
         run: npm install --legacy-peer-deps
       - run: rm yarn.lock
-      - run: yarn cache clean
-      - run: sudo yarn install
+      - run: npm cache clean
       - name: Build
         run: npm run build
       - name: Test
