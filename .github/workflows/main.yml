@@ -7,8 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: alpine:3.14
     steps:
       - uses: actions/checkout@v4
         with:
@@ -17,8 +17,7 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: yarn install  --immutable
-
+        run: npm install --legacy-per-deeps
       - name: Build website
-        run: yarn build
-
+        run: npm build
+     
