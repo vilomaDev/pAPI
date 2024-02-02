@@ -8,14 +8,22 @@ on:
 
 jobs:
   build:
-    runs-on: alpine:3.14
-    steps:
-      - uses: actions/checkout@v4
+      runs-on: ubuntu-20.04
+
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+            fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+            node-version: 18
+
+      - name: Set up Alpine
+        run: |
+          docker pull alpine:3.14
+          docker build -t papi .
+
       - name: Install dependencies
         run: npm install --legacy-peer-deps
       - name: Build website
