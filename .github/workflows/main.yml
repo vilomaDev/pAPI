@@ -23,7 +23,6 @@ jobs:
         run: |
           docker pull alpine:3.14
           docker build -t papi .
-
       - name: Install dependencies
         run: npm install --legacy-peer-deps
       - name: Build website
