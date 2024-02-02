@@ -9,6 +9,8 @@ on:
 jobs:
   build:
       runs-on: ubuntu-20.04
+      container:
+        image:  alpine:3.14
 
       steps:
       - name: Checkout code
@@ -18,11 +20,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
             node-version: 18
-
-      - name: Set up Alpine
-        run: |
-          docker pull alpine:3.14
-          docker build -t papi .
       - name: Install dependencies
         run: npm install --legacy-peer-deps
       - name: Build website
