@@ -9,9 +9,7 @@ on:
 jobs:
   build:
       runs-on: ubuntu-20.04
-      container:
-        image:  node:14-alpine
-
+      
       steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,8 +18,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
             node-version: '14'
-      - name: Install dependencies
-        run: yarn install
-      - name: Build website
-        run: npm run build
-     
+      - name: Build Docker image
+        run: |
+          docker build -t papi .
+          docker save -o papi.tar papi
+
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: papi-artifact
+          path: papi.tar
