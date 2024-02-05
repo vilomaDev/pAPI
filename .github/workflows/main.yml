@@ -9,7 +9,9 @@ on:
 jobs:
   build:
       runs-on: ubuntu-20.04
-      
+      container:
+        image:  node:14-alpine
+
       steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,13 +20,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
             node-version: '14'
-      - name: Build Docker image
-        run: |
-          docker build -t papi .
-          docker save -o papi.tar papi
-
-      - name: Upload Docker image artifact
-        uses: actions/upload-artifact@v2
+      - name: Install dependencies
+        run: yarn install
+      - name: Build website
+        run: npm run build
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: papi-artifact
-          path: papi.tar
+          name: dist-without-markdown
+          path: |
+            dist
+            !dist/**/*.md
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: output/test/code-coverage.html
