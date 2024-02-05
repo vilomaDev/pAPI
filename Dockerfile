@@ -1,6 +1,4 @@
-FROM alpine:3.14
-
-RUN apk --no-cache add nodejs npm
+FROM node:14-alpine
 
 WORKDIR /app
 
