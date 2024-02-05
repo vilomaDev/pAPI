@@ -17,7 +17,7 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
       - name: Build Docker image
-        run: docker build -t pAPI .
+        run: docker build -t papi .
 
       - name: Install strapi workspace
         run: npm install strapi@workspace
