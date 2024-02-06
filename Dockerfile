@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY package*.json ./
 
+RUN npm install strapi@workspace
+
 RUN npm install
 
 COPY . .
