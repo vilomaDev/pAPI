@@ -18,7 +18,8 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: Build Docker image
         run: docker build -t papi .
-
+      - name: delete yarn
+        run: rm yarn.lock
       - name: Install dependencies
         run: npm install --legacy-peer-deps
       - name: Build website
