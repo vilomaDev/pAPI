@@ -19,8 +19,6 @@ jobs:
       - name: Build Docker image
         run: docker build -t papi .
 
-      - name: Install strapi workspace
-        run: npm install strapi@workspace
       - name: Install dependencies
         run: npm install
       - name: Build website
