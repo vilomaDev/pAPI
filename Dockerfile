@@ -1,10 +1,7 @@
-FROM node:18-alpine
-WORKDIR /opt/
-COPY ./package.json ./
-ENV PATH /opt/node_modules/.bin:$PATH
-RUN  npm install
-WORKDIR /opt/app
+FROM node:14.17.1-alpine
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
 COPY . .
-RUN npm run build
 EXPOSE 1337
-CMD ["yarn", "develop"]
+CMD ["npm", "develop"]
