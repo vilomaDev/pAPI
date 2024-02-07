@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: install-build
-          path: test/build.txt
+          path: test/helpers
   test: 
     needs: build
     runs-on: ubuntu-20.04
