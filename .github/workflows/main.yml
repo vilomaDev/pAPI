@@ -48,7 +48,7 @@ jobs:
           name: install-build
 
       - name: Run tests in Docker container
-        run: docker run papi npm test || exit 1
+        run: docker run papi:v1.0.0 npm test || exit 1
 
       - name: Test app
         run: npm run test || exit 1
