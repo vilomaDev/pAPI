@@ -47,7 +47,7 @@ jobs:
         with:
           name: install-build
       - name: Run tests in Docker container
-        run: docker run my-app npm test
+        run: docker run papi npm test
       - name: test app
         run: npm run test
   
