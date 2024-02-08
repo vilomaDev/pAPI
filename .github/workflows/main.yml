@@ -54,6 +54,7 @@ jobs:
         with:
           name: install-build
           path: test/helpers
+      - run: npm install yargs
 
       - name: Test app
         run: npm run test:generate-app
