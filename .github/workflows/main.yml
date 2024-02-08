@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: docker-image
-          path: ../../Dockerfile
+          path: test/helpers
           
       - name: Install dependencies
         run: yarn install
@@ -51,7 +51,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docker-image
-          path: ../../Dockerfile
+          path: test/helpers
 
       - name: Run tests in Docker container
         run: docker run papi:v1.0.0 npm test
