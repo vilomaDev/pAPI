@@ -46,9 +46,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: install-build
-      - name: Build Docker image
-        run: docker build -t papi:v1.0.0 .
-
+          
       - name: Run tests in Docker container
         run: docker run papi:v1.0.0 npm test
 
