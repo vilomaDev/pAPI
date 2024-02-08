@@ -22,7 +22,7 @@ jobs:
         run: docker build -t papi:v1.0.0 -f Dockerfile .
         
       - name: Archive Docker image
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: docker-image
           path: .  # Archiva la imagen Docker en la raíz del repositorio
@@ -34,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: install-build
           path: test/helpers
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Download Docker image
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: docker-image
           path: .
@@ -53,7 +53,7 @@ jobs:
         run: docker run papi:v1.0.0 npm test
         
       - name: Download build
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: install-build
           path: test/helpers
