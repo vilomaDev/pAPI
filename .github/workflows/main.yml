@@ -26,10 +26,10 @@ jobs:
         with:
           node-version: '14'
       - name: Archive Docker image
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: docker-image
-          path: test/helpers
+          path: .
           
       - name: Install dependencies
         run: yarn install
@@ -38,7 +38,7 @@ jobs:
         run: npm run build
 
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: install-build
           path: test/helpers
@@ -48,16 +48,16 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Download Docker image
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v2
         with:
           name: docker-image
-          path: test/helpers
+          path: .
 
       - name: Run tests in Docker container
         run: docker run papi:v1.0.0 npm test
         
       - name: Download build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v2
         with:
           name: install-build
           path: test/helpers
