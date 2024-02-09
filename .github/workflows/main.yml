@@ -57,5 +57,5 @@ jobs:
       - run: npm install yargs --legacy-peer-deps
 
       - name: Test app
-        run: npm run test:generate-app
+        run: npm run test:unit
   
