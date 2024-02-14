@@ -25,7 +25,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: docker-image
-          path: .  # Archiva la imagen Docker en la raíz del repositorio
+          path: .  
           
       - name: Install dependencies
         run: yarn install
@@ -36,12 +36,15 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: install-build
+          name: Build
           path: test/helpers
 
   test: 
-    needs: build
     runs-on: ubuntu-20.04
+    permissions:
+        contents: write
+        
+    needs: build
     steps:
       - name: Download Docker image
         uses: actions/download-artifact@v4
@@ -52,10 +55,13 @@ jobs:
       - name: Download build
         uses: actions/download-artifact@v4
         with:
-          name: install-build
+          name: Build
           path: test/helpers
-      - run: npm install yargs --legacy-peer-deps
-      - run: npm install @strapi/utils --legacy-peer-deps
+          
+      - run: zip -r build.zip build/
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build.zip"
 
       - name: Test app
         run: npm run test:unit:all
