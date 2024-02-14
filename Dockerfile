@@ -11,8 +11,6 @@ COPY . .
 
 # Instala Strapi
 RUN npm install strapi@latest -g
-RUN yarn install
-
 # Expone el puerto 1337 para acceder a la aplicación Strapi
 EXPOSE 1337
 
