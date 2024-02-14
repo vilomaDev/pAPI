@@ -56,8 +56,6 @@ jobs:
           path: test/helpers
       - run: npm install yargs --legacy-peer-deps
       - run: npm install @strapi/utils --legacy-peer-deps
-      - name: Install dependencies
-        run: yarn install
 
       - name: Test app
         run: npm run test:unit:all
