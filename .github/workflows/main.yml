@@ -57,6 +57,7 @@ jobs:
         with:
           name: Build
           path: build
+      - run: yarn add @nrwl/cli --dev
 
       - name: Test app
         run: npm run test:unit:all
