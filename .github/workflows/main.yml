@@ -57,5 +57,5 @@ jobs:
         with:
           name: Build
           path: build
-      - run: npm run test:unit:all
+      - run: npm run test:unit:all --ci
       
