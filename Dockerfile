@@ -10,6 +10,7 @@ WORKDIR /srv/app
 COPY . .
 
 # Instala Strapi
+RUN npm install -g @nrwl/cli
 RUN npm install strapi@latest -g
 # Expone el puerto 1337 para acceder a la aplicación Strapi
 EXPOSE 1337
