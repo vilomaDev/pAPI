@@ -57,7 +57,5 @@ jobs:
         with:
           name: Build
           path: build
-      - run: yarn global add nx
-      - run: yarn add @nrwl/cli --dev
       - run: npm run test:unit:all
       
