@@ -57,7 +57,7 @@ jobs:
         with:
           name: Build
           path: build
-      - run: npm install --save-dev @nrwl/cli
+      - run: npm install -g @nrwl/cli
       
       - run: nx run-many --target=test:unit --nx-ignore-cycles
       
