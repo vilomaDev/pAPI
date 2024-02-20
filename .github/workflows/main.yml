@@ -58,6 +58,6 @@ jobs:
           name: Build
           path: build
       - name: Install Nx CLI
-        run: npm install -g @nrwl/cli
+        run: yarn install
       - run: npx nx run-many --target=test:unit --nx-ignore-cycles
       
