@@ -61,5 +61,5 @@ jobs:
       - run: yarn cache clean
       - name: Install Nx CLI
         run: yarn install
-      - run: npx nx run-many --target=test:unit --nx-ignore-cycles
+      - run: npx nx run-many --target=test:unit 
       
