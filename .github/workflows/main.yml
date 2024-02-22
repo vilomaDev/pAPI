@@ -61,6 +61,5 @@ jobs:
       - run: yarn cache clean
       - name: Install Nx CLI
         run: yarn install
-      - run: test:unit
       - run: test:unit:all
       
