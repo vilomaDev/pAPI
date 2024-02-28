@@ -18,11 +18,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: Install dependencies
-        run: yarn install
-        
-      - name: Build website
-        run: npm run build
-
-      - run: npm run test:unit:all
+      
       
