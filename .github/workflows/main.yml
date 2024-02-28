@@ -8,58 +8,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: alpine:3.14
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
             fetch-depth: 0
-
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v3
-        
-      - name: Build Docker image
-        run: docker build -t papi:v1.0.0 -f Dockerfile .
-        
-      - name: Archive Docker image
-        uses: actions/upload-artifact@v4
-        with:
-          name: docker-image
-          path: .  
-          
       - name: Install dependencies
         run: yarn install
         
       - name: Build website
         run: npm run build
 
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: Build
-          path: test/helpers
-
-  test: 
-    runs-on: ubuntu-20.04
-    permissions:
-        contents: write
-        
-    needs: build
-    steps:
-      - name: Download Docker image
-        uses: actions/download-artifact@v4
-        with:
-          name: docker-image
-          path: .
-        
-      - name: Download build
-        uses: actions/download-artifact@v4
-        with:
-          name: Build
-          path: build
-      - run: yarn add @strapi/utils
-      - run: yarn cache clean
-      - name: Install Nx CLI
-        run: yarn install
       - run: npm run test:unit:all
       
