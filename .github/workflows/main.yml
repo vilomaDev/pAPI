@@ -22,6 +22,7 @@ jobs:
         run: yarn install
       - name: Build app
         run: npm run build
+      - run: ls
       - name: Test all 
         run: npm run test:unit:all
       
