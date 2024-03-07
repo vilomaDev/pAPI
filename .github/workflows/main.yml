@@ -23,6 +23,11 @@ jobs:
       - run: ls
       - name: Build app
         run: npm run build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
+        
       - run: ls
       - name: Test all 
         run: npm run test:unit:all
