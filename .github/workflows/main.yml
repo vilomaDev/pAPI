@@ -23,16 +23,4 @@ jobs:
       - run: ls
       - name: Build app
         run: npm run build
-      - name: Upload artifacts for all projects
-      - run: |
-          for dir in pAPI/*/; do
-          pAPI=$(basename "$dir")
-          echo "Uploading artifacts for project: pAPI"
-          ls "$dir/dist"
-          echo "::set-env name=PROJECT_NAME::pAPI"
-          echo "::set-env name=PROJECT_PATH::$dir"
-          echo "::add-mask::$dir"
-          upload-artifact@v2
-            name: ${{ env.PROJECT_NAME }}-dist
-            path: ${{ env.PROJECT_PATH }}/dist
-            done    
+      
