@@ -23,4 +23,18 @@ jobs:
       - run: ls
       - name: Build app
         run: npm run build
+      - name: Build and upload artifacts for all projects
+        run: |
+          for dir in packages/*/; do
+            echo "Building and uploading artifacts for project in directory: $dir"
+            cd "$dir" || exit 1
+            npm run build
+            cd ..
+            echo "::set-env name=PROJECT_NAME::$(basename "$dir")"
+            echo "::set-env name=PROJECT_PATH::$dir"
+            echo "::add-mask::$dir"
+            upload-artifact@v2
+              name: ${{ env.PROJECT_NAME }}-build
+              path: ${{ env.PROJECT_PATH }}/dist
+          done
       
