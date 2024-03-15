@@ -22,7 +22,7 @@ jobs:
         run: yarn install
       - run: ls
       - name: Build app
-        run: run -T tsc
+        run: npm run build
       - name: Build and upload artifacts for all projects
         run: |
           for dir in packages/*/; do
