@@ -28,13 +28,20 @@ jobs:
           for dir in packages/*/; do
             echo "Building and uploading artifacts for project in directory: $dir"
             cd "$dir" || exit 1
-            npm run build
+            npm run build || exit 1
             cd ..
-            echo "::set-env name=PROJECT_NAME::$(basename "$dir")"
-            echo "::set-env name=PROJECT_PATH::$dir"
+
+            echo "::set-env name=papi::$(basename "$dir")"
+            echo "::set-env name=.::$dir"
             echo "::add-mask::$dir"
+
+            # Upload the build artifacts using upload-artifact@v2
+            echo "::group::Upload Artifacts"
+            echo "Uploading artifacts for project: $(basename "$dir")"
+            echo "Path: $dir/dist"
             upload-artifact@v2
-              name: ${{ env.PROJECT_NAME }}-build
-              path: ${{ env.PROJECT_PATH }}/dist
-          done
+              name: $(basename "$dir")-build
+              path: "$dir/dist"
+              echo "::endgroup::"
+            done
       
