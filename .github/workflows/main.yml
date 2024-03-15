@@ -22,7 +22,7 @@ jobs:
         run: yarn install
       - run: ls
       - name: Build app
-        run: npm run build
+        run: run -T tsc
       - name: Build and upload artifacts for all projects
         run: |
           for dir in packages/*/; do
@@ -30,12 +30,9 @@ jobs:
             cd "$dir" || exit 1
             npm run build || exit 1
             cd ..
-
             echo "::set-env name=papi::$(basename "$dir")"
             echo "::set-env name=.::$dir"
             echo "::add-mask::$dir"
-
-            # Upload the build artifacts using upload-artifact@v2
             echo "::group::Upload Artifacts"
             echo "Uploading artifacts for project: $(basename "$dir")"
             echo "Path: $dir/dist"
@@ -44,4 +41,3 @@ jobs:
               path: "$dir/dist"
               echo "::endgroup::"
             done
-      
