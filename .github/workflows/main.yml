@@ -20,8 +20,8 @@ jobs:
           node-version: 14
       - name: Install dependecies
         run: yarn install
-      - name: Build ap
-        run: sudo npm run build
+      - name: Build app
+        run: npm run build
       
             
             
