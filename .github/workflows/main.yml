@@ -23,21 +23,45 @@ jobs:
       - run: ls
       - name: Build app
         run: npm run build
-      - name: Build and upload artifacts for all projects
-        run: |
-          for dir in packages/*/; do
-            echo "Building and uploading artifacts for project in directory: $dir"
-            cd "$dir" || exit 1
-            npm run build || exit 1
-            cd ..
-            echo "::set-env name=papi::$(basename "$dir")"
-            echo "::set-env name=.::$dir"
-            echo "::add-mask::$dir"
-            echo "::group::Upload Artifacts"
-            echo "Uploading artifacts for project: $(basename "$dir")"
-            echo "Path: $dir/dist"
-            upload-artifact@v2
-              name: $(basename "$dir")-build
-              path: "$dir/dist"
-              echo "::endgroup::"
-            done
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: |
+            packages/admin-test-utils/dist/ 
+            packages/generators/app/dist/
+            packages/core/utils/dist/
+            packages/utils/logger/dist/
+            packages/providers/email-sendmail/dist/
+            packages/providers/upload-local/dist/
+            packages/generators/generators/dist/
+            packages/core/permissions/dist/
+            packages/providers/email-nodemailer/dist/
+            packages/providers/upload-aws-s3/dist/
+            packages/cli/create-strapi-app/dist/
+            packages/providers/email-amazon-ses/dist/
+            packages/providers/email-sendgrid/dist/
+            packages/providers/email-mailgun/dist/
+            packages/providers/upload-cloudinary/dist/
+            packages/cli/create-strapi-starter/dist/
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
+      - name: CSet-up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Download math result for build
+        uses: actions/download-artifact@v2
+        with:
+          name: Build
+      - name: Test app
+        run: npm run test:unit:all
+    
+      
+            
+            
