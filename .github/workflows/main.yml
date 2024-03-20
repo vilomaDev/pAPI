@@ -14,14 +14,12 @@ jobs:
         uses: actions/checkout@v4
         with:
             fetch-depth: 0
-      - name: CSet-up node
+      - name: Set-up node
         uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Install dependecies
         run: yarn install
-      - run: npm run prepare
-      - run: npm run setup
       - name: Build app
         run: npm run build
       
