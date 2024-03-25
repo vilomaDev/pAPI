@@ -20,7 +20,7 @@ jobs:
           node-version: 16
       - name: Install dependecies
         run: yarn install
-      - name: Build ap
+      - name: Build app
         run: npm run build
       
             
